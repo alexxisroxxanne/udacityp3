@@ -56,10 +56,10 @@ Enemy.prototype.checkCollisions = function() {
     }
 };
 
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-
 var Player = function(x, y) {
     this.sprite = 'images/char-cat-girl.png';
     this.x = x;
@@ -83,6 +83,7 @@ Player.prototype.handleInput = function(key) {
     var top = 68;
     var bottom = 400;
 
+    // move player, but keep character in bounds
     if (key === 'left')
     {
         if (this.x == leftbound)
@@ -126,23 +127,22 @@ Player.prototype.win = function() {
     this.displayScore();
 };
 
+// Decrease score and reset player when player dies
 Player.prototype.die = function() {
     this.score--;
     this.resetLocation();
     this.displayScore();
 };
 
+// Display player's score at top of screen
 Player.prototype.displayScore = function() {
     var scoreString = "Score: " + this.score.toString();
-    // var scoreText = document.getElement
     document.querySelector("#score").innerHTML = scoreString;
-    // ctx.strokeText(scoreString, 400, 10);
 };
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-
 var allEnemies = [];
 var enemy;
 for (var i = 0; i < 3; i++) {
@@ -153,6 +153,7 @@ for (var i = 0; i < 3; i++) {
     allEnemies.push(enemy);
 }
 
+// Place the player object in a variable called player
 var player = new Player(200, 400);
 
 
