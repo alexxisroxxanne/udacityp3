@@ -1,6 +1,17 @@
-frontend-nanodegree-arcade-game
-===============================
 
-Students should use this rubric: https://www.udacity.com/course/viewer#!/c-ud015/l-3072058665/m-3072588797
+Frogger - Classic Arcade Game Clone
+===================================
 
-for self-checking their submission.
+Controls:
+	Move Up: Up arrow key
+	Move Down: Down arrow key
+	Move Right: Right arrow key
+	Move Left: Left arrow key
+	
+Objective:
+	Move character across the screen to the river without colliding with
+	bugs
+	Colliding with a bug will reset player location and decrease score
+	Reaching the river will reset player location and increase score
+
+Have fun!
