@@ -2,6 +2,8 @@
 Frogger - Classic Arcade Game Clone
 ===================================
 
+To play, visit http://alexxisroxxanne.github.io/udacityp3/ or open index.html file in your browswer and enjoy!
+
 Controls:
 	Move Up: Up arrow key
 	Move Down: Down arrow key
