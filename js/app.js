@@ -1,4 +1,22 @@
-// Enemies our player must avoid
+/*
+    Frogger - Classic Arcade Game Clone (Udacity P. #3)
+    ---------------------------------------------------
+    Alexxis Johnson - Aug. 8th, 2015
+    -----------------------------------
+    app.js adds functionality to the files and engine provided by
+    resources.js and engine.js
+    This file defines and creates the player and the enemies in the
+    game, handles user input (moving the player with the keys) and
+    updates the score
+*/
+
+
+
+/*
+    Enemy creates bugs that our player must avoid
+    - takes params x and y for initial locations and speed variable for
+    traveling speed
+*/
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -15,8 +33,10 @@ var Enemy = function(x, y, speed) {
     this.speed = speed;
 };
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
+/*
+ Update the enemy's position, required method for game
+ Parameter: dt, a time delta between ticks
+*/
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
@@ -39,12 +59,13 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// Reset enemies in screen
+// Determine random new speed for enemies when reappearing on screen
 Enemy.prototype.setNewSpeed = function() {
     var randomSpeedMult = Math.random() * (5 - 1 + 1) + 1;
     this.speed = randomSpeedMult * 100;
 };
 
+// Check if enemy and player have colliding; kill player if they have
 Enemy.prototype.checkCollisions = function() {
     var yDiff = this.y - player.y;
     var xDiff = this.x - player.x;
@@ -57,9 +78,10 @@ Enemy.prototype.checkCollisions = function() {
 };
 
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+/*
+    Player creates the user's player character
+    Parameters x and y set the players initial location
+*/
 var Player = function(x, y) {
     this.sprite = 'images/char-cat-girl.png';
     this.x = x;
@@ -68,16 +90,19 @@ var Player = function(x, y) {
     this.displayScore();
 };
 
+// Draw the player on the screen
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Update game; dt is parameter for delta time
 Player.prototype.update = function(dt) {
-    // make sure game is moving at same speed
+    // works with empty function
 };
 
+// Handle user input via the arrow keys in key parameter
 Player.prototype.handleInput = function(key) {
-    // move player based on keyboard input
+    // define player bounds
     var leftbound = -2;
     var rightbound = 402;
     var top = 68;
@@ -114,20 +139,20 @@ Player.prototype.handleInput = function(key) {
     }
 };
 
-// Reset player location
+// Reset player location to initial location
 Player.prototype.resetLocation = function() {
     this.x = 200;
     this.y = 400;
 };
 
-// Increase score and reset player when player wins
+// Increase score and reset player location when player wins
 Player.prototype.win = function() {
     this.score++;
     this.resetLocation();
     this.displayScore();
 };
 
-// Decrease score and reset player when player dies
+// Decrease score and reset player location when player dies
 Player.prototype.die = function() {
     this.score--;
     this.resetLocation();
@@ -141,7 +166,7 @@ Player.prototype.displayScore = function() {
 };
 
 
-// Now instantiate your objects.
+
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
 var enemy;
@@ -157,8 +182,7 @@ for (var i = 0; i < 3; i++) {
 var player = new Player(200, 400);
 
 
-// This listens for key presses and sends the keys to your
-// Player.handleInput() method. You don't need to modify this.
+// Listen for key presses and send input to handleInput()
 document.addEventListener('keyup', function(e) {
     var allowedKeys = {
         37: 'left',
